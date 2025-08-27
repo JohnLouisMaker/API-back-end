@@ -1,0 +1,5 @@
+{
+  "exec_map": {
+    "js": "sucrase-node"
+  }
+}
