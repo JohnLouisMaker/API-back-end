@@ -233,12 +233,12 @@ npm test           # Executar testes
 ## 🔒 Segurança
 
 ### Implementações de Segurança
-- ✅ Autenticação JWT com expiração
-- ✅ Hash de senhas com bcrypt + salt
-- ✅ Validação rigorosa de entrada
-- ✅ Middleware de autenticação
-- ✅ Sanitização de dados
-- ✅ Proteção contra SQL Injection (Sequelize)
+- Autenticação JWT com expiração
+- Hash de senhas com bcrypt + salt
+- Validação rigorosa de entrada
+- Middleware de autenticação
+- Sanitização de dados
+- Proteção contra SQL Injection (Sequelize)
 
 ## 👨‍💻 Autor
 
