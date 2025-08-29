@@ -38,7 +38,7 @@ describe("AuthController", () => {
       expect(res.json).toHaveBeenCalledWith({ error: "Usuário não encontrado" });
     });
 
-    it("deve retornar 401 se a senha estiver incorreta", async () => {
+    it("deve retornar 401 se a senha inserida estiver incorreta", async () => {
       const mockUser = {
         id: 1,
         email: "teste@teste.com",
