@@ -7,7 +7,6 @@
 ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
 ![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
-![Jest](https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white)
 
 ## 📋 Sobre o Projeto
 
@@ -49,7 +48,6 @@ API robusta desenvolvida para gerenciar relacionamentos comerciais, com o contro
 - **JWT** - Autenticação via tokens
 - **Bcrypt** - Hash de senhas
 - **Yup** - Validação de dados
-- **Jest** - Testes automatizados
 - **ESLint + Prettier** - Qualidade de código
 
 ## 🚀 Como Executar
@@ -213,13 +211,6 @@ npm run test:coverage
 npm run test:watch
 ```
 
-### Cobertura de Testes
-- [x] AuthController - Login e autenticação
-- [x] AuthMiddleware - Validação de tokens
-- [x] ContactsController - CRUD completo
-- [x] CustomersController - CRUD completo
-- [x] UsersController - CRUD completo
-
 ## 📦 Scripts Disponíveis
 
 ```bash
@@ -227,7 +218,6 @@ npm run dev        # Executar em desenvolvimento
 npm run lint       # Verificar código com ESLint
 npm run lint:fix   # Corrigir problemas automaticamente
 npm run format     # Formatar código com Prettier
-npm test           # Executar testes
 ```
 
 ## 🔒 Segurança
