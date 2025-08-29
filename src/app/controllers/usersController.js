@@ -113,7 +113,6 @@ class UsersController {
     const schema = yup.object().shape({
       name: yup.string().required("Nome é obrigatório"),
       email: yup.string().email("E-mail inválido").required("E-mail é obrigatório"),
-      status: yup.string().oneOf(["ACTIVE", "ARCHIVED"], "Status inválido").notRequired(),
       password: yup
         .string()
         .min(8, "Senha deve ter no mínimo 8 caracteres")
@@ -127,7 +126,7 @@ class UsersController {
     try {
       await schema.validate(req.body, { abortEarly: false });
 
-      const { name, email, status, password } = req.body;
+      const { name, email, password } = req.body;
 
       const existingUser = await User.findOne({ where: { email } });
       if (existingUser) return res.status(400).json({ error: "E-mail já cadastrado" });
@@ -137,7 +136,6 @@ class UsersController {
       const user = await User.create({
         name,
         email,
-        status: status || "ACTIVE",
         password_hash: hashedPassword,
       });
       const { password_hash, ...userData } = user.toJSON();

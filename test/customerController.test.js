@@ -3,7 +3,7 @@ import * as yup from "yup";
 import CustomersController from "../src/app/controllers/customersController.js";
 import Customers from "../src/app/models/customers.js";
 
-// ==== Mock de módulos externos ==== //
+////MOCKS
 jest.mock("yup", () => {
   const actualYup = jest.requireActual("yup");
   const mockString = {
@@ -38,7 +38,7 @@ jest.mock("date-fns", () => ({
 jest.mock("../src/app/models/customers.js");
 jest.mock("../src/app/models/contacts.js");
 
-// ==== Yup Mocks ==== //
+////MOCKS VARIABLES
 const mockValidate = jest.fn();
 const mockShape = { validate: mockValidate };
 const mockString = {
@@ -48,7 +48,7 @@ const mockString = {
   notRequired: jest.fn().mockReturnThis(),
 };
 
-// ==== Testes ==== //
+////TEST
 describe("CustomersController", () => {
   let req, res, errorSpy;
 
@@ -75,7 +75,7 @@ describe("CustomersController", () => {
     errorSpy.mockRestore();
   });
 
-  // ===== INDEX ===== //
+  //// INDEX
   describe("index", () => {
     it("deve retornar lista de clientes com filtros", async () => {
       req.query = { name: "João", page: "1", limit: "10" };
@@ -121,7 +121,7 @@ describe("CustomersController", () => {
     });
   });
 
-  // ===== SHOW ===== //
+  //// SHOW
   describe("show", () => {
     it("deve retornar cliente específico", async () => {
       req.params.id = "1";
@@ -145,7 +145,7 @@ describe("CustomersController", () => {
     });
   });
 
-  // ===== CREATE ===== //
+  //// CREATE
   describe("create", () => {
     it("deve criar cliente com dados válidos", async () => {
       req.body = { name: "João", email: "joao@email.com" };
@@ -183,7 +183,7 @@ describe("CustomersController", () => {
     });
   });
 
-  // ===== UPDATE ===== //
+  //// UPDATE
   describe("update", () => {
     it("deve atualizar cliente existente", async () => {
       req.params.id = "1";
@@ -215,7 +215,7 @@ describe("CustomersController", () => {
     });
   });
 
-  // ===== DESTROY ===== //
+  //// DESTROY
   describe("destroy", () => {
     it("deve deletar cliente existente", async () => {
       req.params.id = "1";

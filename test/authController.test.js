@@ -1,10 +1,8 @@
-// tests/authController.test.js
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import AuthController from "../src/app/controllers/authController.js";
 import User from "../src/app/models/users.js";
 
-// Mock dos módulos
 jest.mock("jsonwebtoken");
 jest.mock("bcryptjs");
 jest.mock("../src/app/models/users.js");

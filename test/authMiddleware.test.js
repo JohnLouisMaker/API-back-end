@@ -1,4 +1,3 @@
-// tests/authMiddleware.test.js
 import jwt from "jsonwebtoken";
 import authMiddleware from "../src/app/middlewares/authMiddleware.js";
 
@@ -19,7 +18,6 @@ describe("AuthMiddleware", () => {
 
     next = jest.fn();
 
-    // Mock do process.env
     process.env.JWT_SECRET = "test_secret";
   });
 

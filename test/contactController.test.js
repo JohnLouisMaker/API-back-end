@@ -5,7 +5,7 @@ import ContactsController from "../src/app/controllers/contactsController.js";
 import Contact from "../src/app/models/contacts.js";
 import Customer from "../src/app/models/customers.js";
 
-// ==== Mock de módulos externos ==== //
+////MOCKS
 jest.mock("yup", () => {
   const actualYup = jest.requireActual("yup");
   const mockString = {
@@ -40,7 +40,7 @@ jest.mock("date-fns", () => ({
 jest.mock("../src/app/models/contacts.js");
 jest.mock("../src/app/models/customers.js");
 
-// ==== Yup Mocks ==== //
+////MOCKS YUP
 const mockValidate = jest.fn();
 const mockShape = { validate: mockValidate };
 
@@ -51,40 +51,35 @@ const mockString = {
   notRequired: jest.fn().mockReturnThis(),
 };
 
-// ==== Testes ==== //
+////TESTES
 describe("ContactsController", () => {
   let req, res;
   let errorSpy;
 
   beforeEach(() => {
-    // Configura mocks do yup
     yup.string.mockImplementation(() => mockString);
     yup.object.mockImplementation(() => ({
       shape: jest.fn(() => mockShape),
     }));
 
-    // Configura mocks do date-fns
     dateFns.isValid.mockReturnValue(true);
     dateFns.parseISO.mockImplementation((date) => new Date(date));
 
-    // Configura os objetos de requisição e resposta
     req = { params: {}, query: {}, body: {} };
     res = {};
     res.status = jest.fn().mockReturnValue(res);
     res.json = jest.fn().mockReturnValue(res);
     res.send = jest.fn().mockReturnValue(res);
 
-    // Suprime o console.error para os testes
     errorSpy = jest.spyOn(console, "error").mockImplementation(() => {});
   });
 
   afterEach(() => {
-    // Limpa todos os mocks e restaura o console
     jest.clearAllMocks();
     errorSpy.mockRestore();
   });
 
-  // ===== INDEX ===== //
+  //// INDEX
   describe("index", () => {
     it("deve retornar lista de contatos com filtros", async () => {
       req.params.customerId = "1";
@@ -159,7 +154,7 @@ describe("ContactsController", () => {
     });
   });
 
-  // ===== SHOW ===== //
+  //// SHOW
   describe("show", () => {
     it("deve retornar contato específico", async () => {
       req.params.customerId = "1";
@@ -197,7 +192,7 @@ describe("ContactsController", () => {
     });
   });
 
-  // ===== CREATE ===== //
+  //// CREATE
   describe("create", () => {
     it("deve criar novo contato com dados válidos", async () => {
       req.params.customerId = "1";
@@ -241,7 +236,7 @@ describe("ContactsController", () => {
     });
   });
 
-  // ===== UPDATE ===== //
+  //// UPDATE
   describe("update", () => {
     it("deve atualizar contato existente", async () => {
       req.params.customerId = "1";
@@ -289,7 +284,7 @@ describe("ContactsController", () => {
     });
   });
 
-  // ===== DESTROY ===== //
+  //// DESTROY
   describe("destroy", () => {
     it("deve deletar contato existente", async () => {
       req.params.customerId = "1";
@@ -327,7 +322,6 @@ describe("ContactsController", () => {
 
       expect(res.status).toHaveBeenCalledWith(500);
       expect(res.json).toHaveBeenCalledWith({ error: "Erro ao deletar contato" });
-      // Adicionando um expect para verificar se o console.error foi chamado
       expect(console.error).toHaveBeenCalled();
     });
   });

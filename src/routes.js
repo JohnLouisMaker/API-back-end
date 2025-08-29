@@ -12,6 +12,8 @@ const routes = new Router();
 
 ////CRIAR USUARIO
 routes.post("/users", users.create);
+
+//// LOGIN
 routes.post("/login", authController.authenticate);
 
 routes.use(authMiddleware);
