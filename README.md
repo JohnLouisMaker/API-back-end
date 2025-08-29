@@ -240,45 +240,6 @@ npm test           # Executar testes
 - ✅ Sanitização de dados
 - ✅ Proteção contra SQL Injection (Sequelize)
 
-### Headers de Segurança Recomendados
-```javascript
-// Adicionar ao Express (não implementado)
-app.use(helmet());
-app.use(cors({ origin: process.env.FRONTEND_URL }));
-app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));
-```
-
-## 🚀 Deploy
-
-### Variáveis de Ambiente (Produção)
-```env
-NODE_ENV=production
-JWT_SECRET=jwt_secret_super_forte_producao
-DB_HOST=seu_host_producao
-DB_USER=usuario_producao
-DB_PASS=senha_super_segura
-DB_NAME=customer_management_prod
-DB_DIALECT=postgres
-```
-
-### Plataformas Recomendadas
-- **Railway** - Deploy fácil com PostgreSQL
-- **Render** - Gratuito com limitações
-- **Heroku** - Clássico para APIs
-- **DigitalOcean** - VPS customizável
-
-## 🤝 Contribuição
-
-1. Fork o projeto
-2. Crie sua feature branch (`git checkout -b feature/nova-funcionalidade`)
-3. Commit suas mudanças (`git commit -m 'Adiciona nova funcionalidade'`)
-4. Push para a branch (`git push origin feature/nova-funcionalidade`)
-5. Abra um Pull Request
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
 ## 👨‍💻 Autor
 
 **João Luis Silva Venâncio**
