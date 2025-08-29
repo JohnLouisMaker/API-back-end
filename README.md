@@ -282,8 +282,8 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 ## 👨‍💻 Autor
 
 **João Luis Silva Venâncio**
-- LinkedIn: [https://linkedin.com/in/seu-perfil](https://www.linkedin.com/in/jo%C3%A3o-luis-75b18a333/)
-- GitHub: [https://github.com/seu-usuario](https://github.com/JohnLouisMaker)
+- LinkedIn: [https://linkedin.com/in/JohnLouis](https://www.linkedin.com/in/jo%C3%A3o-luis-75b18a333/)
+- GitHub: [https://github.com/JohnLouisMaker](https://github.com/JohnLouisMaker)
 - Email: jluisilvenancio@gmail.com
 
 ⭐ **Se este projeto te ajudou, deixe uma estrela!**
