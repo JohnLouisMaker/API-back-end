@@ -117,16 +117,14 @@ class UsersController {
         .string()
         .min(8, "Senha deve ter no mínimo 8 caracteres")
         .required("Senha é obrigatória"),
-      passwordConfirm: yup
-        .string()
-        .oneOf([yup.ref("password")], "As senhas não conferem")
-        .required("Confirmação de senha é obrigatória"),
+      status: yup.string().oneOf(["ACTIVE", "INACTIVE"], "Status inválido"),
+      role: yup.string().oneOf(["USER", "ADMIN"], "Role inválido"),
     });
 
     try {
       await schema.validate(req.body, { abortEarly: false });
 
-      const { name, email, password } = req.body;
+      const { name, email, password, status = "ACTIVE", role = "USER" } = req.body;
 
       const existingUser = await User.findOne({ where: { email } });
       if (existingUser) return res.status(400).json({ error: "E-mail já cadastrado" });
@@ -137,9 +135,11 @@ class UsersController {
         name,
         email,
         password_hash: hashedPassword,
+        status,
+        role,
       });
-      const { password_hash, ...userData } = user.toJSON();
 
+      const { password_hash, ...userData } = user.toJSON();
       return res.status(201).json(userData);
     } catch (error) {
       if (error instanceof yup.ValidationError)
@@ -149,7 +149,8 @@ class UsersController {
     }
   }
 
-  //// UPDATE
+  //// UPDATE;
+
   async update(req, res) {
     const schema = yup.object().shape({
       name: yup.string(),
@@ -176,7 +177,9 @@ class UsersController {
 
       await schema.validate(req.body, { abortEarly: false });
 
-      const user = await User.findByPk(id);
+      const user = await User.findByPk(id, {
+        attributes: ["id", "name", "email", "password_hash"], // só essas colunas
+      });
       if (!user) return res.status(404).json({ error: "Usuário não encontrado" });
 
       const { name, email, oldPassword, password } = req.body;
@@ -184,6 +187,7 @@ class UsersController {
 
       if (name) updates.name = name;
 
+      // Para email ou senha, exige senha atual
       if ((email || password) && !oldPassword)
         return res
           .status(401)
@@ -192,7 +196,15 @@ class UsersController {
       if (oldPassword && !(await bcrypt.compare(oldPassword, user.password_hash)))
         return res.status(401).json({ error: "Senha antiga incorreta" });
 
-      if (email) updates.email = email;
+      if (email) {
+        const existingUser = await User.findOne({
+          where: { email, id: { [Op.ne]: id } },
+        });
+        if (existingUser)
+          return res.status(400).json({ error: "E-mail já está sendo usado por outro usuário" });
+        updates.email = email;
+      }
+
       if (password) updates.password_hash = await bcrypt.hash(password, 10);
 
       await user.update(updates);
